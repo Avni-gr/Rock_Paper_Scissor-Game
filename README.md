@@ -22,7 +22,6 @@ This project is a simple yet functional calculator developed using HTML, CSS, an
 ### Screenshot
 
 ![](https://github.com/Avni-gr/Rock_Paper_Scissor-Game/blob/main/Screenshot%202024-04-22%20150836.png?raw=true)
-![](https://github.com/Avni-gr/Rock_Paper_Scissor-Game/blob/main/Screenshot%202024-04-22%20150904.png?raw=true)
 
 ### Links
 
