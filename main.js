@@ -11,10 +11,28 @@ function generateRandom(){
   }
 }
 
+
 let score={
   win:0,
   lost:0,
   tie:0,
+
+}
+score.displayScore= function(){
+  document.querySelector('#final_score').innerHTML=`
+  Your Score : ${score.win} | 
+  Computer Score : ${score.lost} | 
+  It's tie : ${score.tie}`
+}
+
+
+let scorestr=localStorage.getItem('Score');
+if(scorestr!== undefined){
+  let jsonstr=JSON.parse(scorestr);
+  document.querySelector('#final_score').innerHTML=`
+  Your Score : ${jsonstr.win} | 
+  Computer Score : ${jsonstr.lost} | 
+  It's tie : ${jsonstr.tie}`
 }
 
 function showResult(userMove,computerMove){
@@ -58,14 +76,18 @@ function showResult(userMove,computerMove){
 }
 
 function alertShow(userMove,computerMove,result){
-  document.querySelector('#final_score').innerHTML=`
-Your Score : ${score.win} | 
-Computer Score : ${score.lost} | 
-It's tie : ${score.tie}`
+  localStorage.setItem('Score',JSON.stringify(score));
+  score.displayScore();
+  
 
   alert(`user: ${userMove}, Computer: ${computerMove} 
 So ${result}`)
 }
 
+function ResetButton(){
+  localStorage.clear();
+  score.displayScore();
+
+}
 
 
