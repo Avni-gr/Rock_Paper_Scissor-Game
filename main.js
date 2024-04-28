@@ -1,5 +1,3 @@
-
-
 function generateRandom(){
   let randomNum=Math.random()*3;
   if(randomNum>0 && randomNum<=1){
@@ -11,12 +9,10 @@ function generateRandom(){
   }
 }
 
-
 let score={
   win:0,
   lost:0,
   tie:0,
-
 }
 score.displayScore= function(){
   document.querySelector('#final_score').innerHTML=`
@@ -25,14 +21,18 @@ score.displayScore= function(){
   It's tie : ${score.tie}`
 }
 
-
 let scorestr=localStorage.getItem('Score');
-if(scorestr!== undefined){
-  let jsonstr=JSON.parse(scorestr);
-  document.querySelector('#final_score').innerHTML=`
-  Your Score : ${jsonstr.win} | 
-  Computer Score : ${jsonstr.lost} | 
-  It's tie : ${jsonstr.tie}`
+
+if (scorestr !== null) {
+  let jsonstr = JSON.parse(scorestr);
+  score.win = jsonstr.win || 0;
+  score.lost = jsonstr.lost || 0;
+  score.tie = jsonstr.tie || 0;
+
+  score.displayScore();
+} else {
+
+  score.displayScore();
 }
 
 function showResult(userMove,computerMove){
@@ -86,8 +86,16 @@ So ${result}`)
 
 function ResetButton(){
   localStorage.clear();
+  score={
+    win:0,
+    lost:0,
+    tie:0,
+  }
+  score.displayScore= function(){
+    document.querySelector('#final_score').innerHTML=`
+    Your Score : ${score.win} | 
+    Computer Score : ${score.lost} | 
+    It's tie : ${score.tie}`
+  }
   score.displayScore();
-
 }
-
-
